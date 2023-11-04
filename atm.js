@@ -1,5 +1,5 @@
 let option;
-let balance = 0;
+let balance = 12500;
 
 do {
   option = prompt(
@@ -16,20 +16,22 @@ do {
       alert("Saldo actual: " + balance);
       break;
     case "2":
-        balance = balance + deposit();
-        alert("Saldo actual: " + balance)
+      balance = balance + deposit();
+      alert("Saldo actual: " + balance);
       break;
     case "3":
-      alert("retirar dinero");
+      balance = balance - withdraw();
+      alert("Saldo actual: " + balance);
       break;
     case "4":
+    case null:
       alert("hasta luego");
       break;
     default:
       alert("####OPCION INCORRECTA" + "Ingrese una opción válida");
       break;
   }
-} while (option != 4);
+} while (option != 4 && option != null);
 
 function deposit() {
   let depositAmount = 0;
@@ -65,7 +67,8 @@ function deposit() {
       numberOfBills = prompt(
         "Ingrese la cantidad de billetes de $" +
           chosenBanknoteDenomination +
-          " a depositar\n\n" + "- solo Numero > 0 -\n\n"
+          " a depositar\n\n" +
+          "- solo Numero > 0 -\n\n"
       );
 
       correctOperation = parseInt(numberOfBills) >= 1;
@@ -92,8 +95,38 @@ function deposit() {
     } while (!correctOperation);
 
     correctOperation = confirm("¿Quiere ingresar más billetes?");
-
   } while (correctOperation);
 
   return depositAmount;
+}
+
+function withdraw() {
+  let correctOperation = false;
+  let amount;
+
+  do {
+    amount = parseInt(
+      prompt(
+        "Ingrese la cantidad de dinero que quiere retirar:\n" +
+          "Saldo actual: $" +
+          balance
+      )
+    );
+
+    if (amount >= 0 && amount % 100 == 0) {
+      if (amount > balance) {
+        amount = 0;
+        correctOperation = !confirm(
+          "Cantidad insuficiente en la cuenta.\n\n" +
+            "¿Quiere ingresar un monto menor?"
+        );
+      } else {
+        correctOperation = true;
+      }
+    } else {
+      alert("Monto invalido.\n\n Debe ser un numero > 0 y multiplo de 100");
+    }
+  } while (!correctOperation);
+
+  return amount;
 }
