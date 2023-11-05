@@ -5,7 +5,7 @@ Este proyecto es una aplicación de simulación de cajero automático en JavaScr
 Permite consultar el saldo, depositar y retirar dinero de una cuenta bancaria.
 
 ## Deploy
-[Nicolás Sepertino](https://nicoseper89.github.io/php-atm/)
+[Nicolás Sepertino](https://nicoseper89.github.io/atm-js/)
 
 ## Autor
 [Nicolás Sepertino](https://www.linkedin.com/in/nicolassepertino/)
